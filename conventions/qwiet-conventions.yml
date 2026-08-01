@@ -1,0 +1,41 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/qwiet-api-original.yml + https://docs.shiftleft.io/api
+authentication:
+  style: http-bearer
+  header: 'Authorization: Bearer {access token}'
+  token_source: Qwiet Dashboard (Account Settings / Integration Tokens) or /tokens endpoints
+  scheme: BearerToken
+  see: authentication/qwiet-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v4
+  base_path: /api/v4
+  see: lifecycle/qwiet-lifecycle.yml
+pagination:
+  style: page-number
+  params:
+    - page
+    - per_page
+    - limit
+  note: >-
+    List endpoints accept page/per_page (and limit on some search endpoints).
+    No cursor-based pagination is documented.
+idempotency:
+  supported: false
+  note: No Idempotency-Key header or idempotent-retry contract is documented in the spec.
+error_envelope:
+  content_type: application/json
+  shape: '{ ok, code, message, validation_errors[] }'
+  rfc9457: false
+  see: errors/qwiet-error-codes.yml
+rate_limiting:
+  documented: false
+webhooks:
+  supported: true
+  see: asyncapi/qwiet-alerting-webhooks.yml
+scopes:
+  model: RBAC
+  note: >-
+    Access is governed by RBAC roles/scopes (org/team/app) enforced per token,
+    not by OAuth scopes. See the rbac, scopes, and tokens tags in the OpenAPI.

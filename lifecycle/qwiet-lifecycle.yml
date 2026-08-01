@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/qwiet-api-original.yml + https://status.shiftleft.io + https://docs.shiftleft.io/api
+versioning:
+  scheme: uri-path
+  current: v4
+  spec_version: 4.0.0
+  base_path: /api/v4
+  docs: https://docs.shiftleft.io/api
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No formal published deprecation/Sunset (RFC 8594) policy located. The spec
+    marks individual operations deprecated inline (see deprecated_operations).
+status_page: https://status.shiftleft.io
+sla:
+  url: null
+  uptime_target: null
+deprecated_operations:
+  - openapi/qwiet-api-original.yml#ListCompoundFindingsDEPRECATED

@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/qwiet-api-original.yml (alerting tag)
+spec_type: Webhooks
+note: >-
+  Qwiet documents an outbound webhook (alerting) surface but publishes no
+  AsyncAPI document. This captures the webhook catalog. Webhooks are registered
+  per organization and Qwiet POSTs alerting events to the configured URL;
+  optional token-based authentication with renewal metadata is supported.
+delivery:
+  direction: outbound
+  transport: https-post
+  registration_scope: organization
+  authentication:
+    optional_token: true
+    schema: '#/components/schemas/AuthenticatedWebHookTokenConfiguration'
+    renewal: WebhookTokenRenewMetadata / TokenRenewalResponseHandling
+management_operations:
+  - operationId: SetUpWebhook
+    method: PUT
+    path: /orgs/{orgID}/alerting/webhook
+    summary: Set up a webhook (url + events)
+  - operationId: GetWebhook
+    method: GET
+    path: /orgs/{orgID}/alerting/webhook
+    summary: Get the configured webhook
+  - operationId: DeleteWebhook
+    method: DELETE
+    path: /orgs/{orgID}/alerting/webhook
+    summary: Delete the configured webhook
+  - operationId: GetAlertingEvents
+    method: GET
+    path: /alerting/events
+    summary: List the alerting events available for webhook subscription
+payload:
+  config_schema: '#/components/schemas/WebhookConfigurationResponse'
+  fields: [url, tokenID, events]

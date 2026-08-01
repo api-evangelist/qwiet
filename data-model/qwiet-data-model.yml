@@ -1,0 +1,68 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/qwiet-api-original.yml (components.schemas + id-reference fields)
+entities:
+  - name: Organization
+    id: orgID
+    description: Top-level tenant; owns apps, teams, tokens, RBAC roles, webhook config
+  - name: Team
+    id: team_id
+    description: RBAC grouping of users and apps within an org
+  - name: User
+    description: Member of an org with RBAC roles/scopes
+  - name: App
+    id: id
+    description: A scanned application; belongs to a team and optionally a compound
+  - name: Compound
+    description: Multi-language grouping of applications
+  - name: AppGroup
+    description: User-created group of applications
+  - name: Scan
+    id: id
+    description: A code-analysis run against an app branch/version
+  - name: Finding
+    description: A vulnerability/secret/SCA finding produced by a scan
+  - name: Fix
+    description: An AutoFix recommendation for a finding
+  - name: Token
+    description: API/integration access token scoped to an org
+relationships:
+  - from: App
+    to: Team
+    type: belongs_to
+    via: team_id
+  - from: App
+    to: Compound
+    type: belongs_to
+    via: compound
+  - from: Scan
+    to: App
+    type: belongs_to
+    via: app
+  - from: Finding
+    to: Scan
+    type: belongs_to
+    via: scan
+  - from: Finding
+    to: App
+    type: belongs_to
+    via: app
+  - from: Fix
+    to: Finding
+    type: belongs_to
+    via: finding
+  - from: App
+    to: Scan
+    type: has_many
+  - from: Scan
+    to: Finding
+    type: has_many
+  - from: Organization
+    to: App
+    type: has_many
+  - from: Organization
+    to: Team
+    type: has_many
+  - from: Organization
+    to: Token
+    type: has_many

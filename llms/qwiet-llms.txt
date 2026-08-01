@@ -1,0 +1,35 @@
+# Qwiet AI (ShiftLeft)
+
+> Qwiet AI (formerly ShiftLeft, now part of Harness) is an application security testing platform: SAST, SCA, IaC, container, and secrets scanning with reachability/exploitability filtering and AI-generated code fixes (AutoFix). The Qwiet API lets you programmatically manage applications, run and compare scans, retrieve findings, request fixes, manage users/RBAC, and configure alerting webhooks.
+
+## API
+- Qwiet API (OpenAPI 3.0.0, v4): https://docs.shiftleft.io/api
+- Base URL: https://app.shiftleft.io/api/v4
+- Authentication: HTTP Bearer access token (Authorization: Bearer {token})
+
+## Specs
+- OpenAPI: openapi/qwiet-api-original.yml
+- Webhooks (alerting): asyncapi/qwiet-alerting-webhooks.yml
+- Overlay: overlays/qwiet-api-overlay.yaml
+
+## Agent & tooling
+- MCP server (npm, official): harness-code-security-mcp — mcp/qwiet-mcp.yml
+- Agent Skills (Harness Code Security): skills/_index.yml
+- CLI: sl (Qwiet CLI) — cli/qwiet-cli.yml
+
+## Reference artifacts
+- Authentication: authentication/qwiet-authentication.yml
+- Conventions: conventions/qwiet-conventions.yml
+- Error codes: errors/qwiet-error-codes.yml
+- Lifecycle: lifecycle/qwiet-lifecycle.yml
+- Data model: data-model/qwiet-data-model.yml
+- Conformance: conformance/qwiet-conformance.yml
+- Agentic access: agentic-access/qwiet-agentic-access.yml
+- Domain security: security/qwiet-domain-security.yml
+
+## Docs
+- Documentation: https://docs.shiftleft.io/
+- API reference: https://docs.shiftleft.io/api
+- Status: https://status.shiftleft.io
+- Login: https://app.shiftleft.io/login
+- GitHub: https://github.com/ShiftLeftSecurity

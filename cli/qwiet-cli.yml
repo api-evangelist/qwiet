@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.shiftleft.io/ + ShiftLeftSecurity/skills (Harness Code Security Agent Skills)
+cli:
+  name: sl
+  aka: Qwiet CLI (ShiftLeft CLI)
+  description: >-
+    First-party command-line client for Qwiet code analysis (SAST) and
+    Intelligent SCA. Authenticates against app.shiftleft.io and stores
+    credentials in ~/.shiftleft/config.json (org scope via orgId).
+  config: ~/.shiftleft/config.json
+  config_env: SL_HOME (default ~/.shiftleft)
+  install:
+    - method: managed
+      command: sl_ensure_cli
+      note: The MCP server downloads/installs the CLI on first use (1-3 min).
+    - method: direct-download
+      note: Binary distributed from Qwiet; lands at ~/.shiftleft/sl
+  commands:
+    - name: sl auth
+      description: Authenticate and write the access token/org to ~/.shiftleft/config.json
+    - name: sl analyze
+      description: Run code analysis on the current workspace; creates the app on analyze if needed and returns a scan id
+  notes: >-
+    The `sl` binary is the runtime behind the harness-code-security-mcp tools
+    (sl_ensure_cli, sl_analyze). App id defaults to the workspace folder name
+    when omitted.

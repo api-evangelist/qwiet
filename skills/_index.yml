@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/ShiftLeftSecurity/skills (Harness Code Security Agent Skills, master)
+note: >-
+  Provider-published Agent Skills saved verbatim. They orchestrate the
+  harness-code-security-mcp MCP server (sl_* tools) and the `sl` CLI across the
+  scan -> triage -> autofix workflow. Install upstream via
+  `npx skills add ShiftLeftSecurity/skills -g --skill '*'`.
+skills:
+  - file: qwiet-setup-harness-code-security-mcp.md
+    name: setup-harness-code-security-mcp
+    description: Install and verify the harness-code-security-mcp npm MCP server + Qwiet auth
+    api: openapi/qwiet-api-original.yml
+    operations: []
+  - file: qwiet-run-security-scan.md
+    name: run-security-scan
+    description: Run code analysis (sl analyze) or look up package CVEs (Intelligent SCA)
+    api: openapi/qwiet-api-original.yml
+    operations: [ListApps, ListScans, ListAppFindings]
+  - file: qwiet-triage-vuln.md
+    name: triage-vuln
+    description: List and explain findings from a scan with data flow
+    api: openapi/qwiet-api-original.yml
+    operations: [ListAppFindings, ReadAppFinding, ListScans]
+  - file: qwiet-autofix-vuln.md
+    name: autofix-vuln
+    description: Request or fetch Qwiet recommended fixes and branch autofixes
+    api: openapi/qwiet-api-original.yml
+    operations: [ReadRecommendedFix, ReadFindingFix, getFixesPerCompoundStats]

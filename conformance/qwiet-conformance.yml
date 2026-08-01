@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/qwiet-api-original.yml
+note: >-
+  Cross-cutting standards asserted from the OpenAPI and product surface. Qwiet
+  is an AppSec (SAST/SCA) platform: it produces SARIF and OWASP/PCI-DSS/CWE
+  compliance *reports* about scanned code. Those are reporting features, not a
+  claim that the API provider itself carries SOC 2 / ISO certifications, so no
+  `Compliance` pointer is emitted here.
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: securityScheme is http bearer (BearerToken), not oauth2
+  - id: openid-connect
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: errors use a custom {ok,code,message} envelope, not application/problem+json
+  - id: rfc6750-bearer-token
+    conforms: true
+    evidence: Authorization Bearer access token
+  - id: sarif
+    conforms: true
+    evidence: DownloadSarifReport operation returns SARIF scan output
+  - id: owasp-reporting
+    conforms: true
+    evidence: ReadDetailedOWASPReport / ReadAppScanFindingsOWASPGrouped operations
+  - id: cwe-reporting
+    conforms: true
+    evidence: ReadCWEReport operation
+  - id: pci-dss-reporting
+    conforms: true
+    evidence: ReadScanPCIDSSReport operation
+  - id: pagination
+    conforms: true
+    evidence: page/per_page/limit query parameters
+  - id: idempotency
+    conforms: false

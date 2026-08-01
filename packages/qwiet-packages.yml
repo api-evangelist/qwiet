@@ -1,0 +1,17 @@
+generated: '2026-07-20'
+method: searched
+source: npm registry + ShiftLeftSecurity GitHub org + docs.shiftleft.io
+notes: >-
+  Qwiet ships a distributed `sl` CLI (installed via `sl_ensure_cli` / direct
+  download, catalogued in cli/) and an official MCP launcher on npm. No
+  first-party per-language client SDK (Python/JS/Go) is published; the API is
+  consumed via the `sl` CLI, the MCP server, or direct Bearer-token HTTP.
+packages:
+  - language: javascript
+    registry: npm
+    name: harness-code-security-mcp
+    url: https://www.npmjs.com/package/harness-code-security-mcp
+    install: npm install -g harness-code-security-mcp
+    official: true
+    kind: mcp-server
+    description: Qwiet / Harness SAST & SCA MCP server (stdio)

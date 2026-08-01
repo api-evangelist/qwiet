@@ -1,0 +1,49 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://www.npmjs.com/package/harness-code-security-mcp
+server:
+  name: harness-code-security-mcp
+  description: >-
+    Qwiet / Harness SAST & SCA MCP server (stdio). Wraps the Qwiet API
+    (app.shiftleft.io) and the `sl` CLI so an agent can run code analysis,
+    triage findings with data flow, and request AutoFix remediations.
+  transport: stdio
+  install: npm install -g harness-code-security-mcp
+  command: npx -y harness-code-security-mcp
+  config_example: |
+    claude mcp add-json harness-code-security-mcp '{"type":"stdio","command":"npx","args":["-y","harness-code-security-mcp"]}'
+  env:
+    - name: QWIET_API_HOST
+      description: API host override (default app.shiftleft.io)
+    - name: SL_HOME
+      description: Config dir (default ~/.shiftleft; holds config.json with orgId)
+    - name: WORKSPACE_FOLDER
+      description: Repo root so AutoFix edits (file/old_string/new_string) match local files
+  auth: Qwiet access token via `sl auth` -> ~/.shiftleft/config.json
+tools:
+  - name: sl_whoami
+    description: Return the authenticated user and activeOrganizationId
+  - name: sl_ensure_cli
+    description: Download/install the `sl` CLI before analysis (1-3 min first run)
+  - name: sl_analyze
+    description: Run code analysis (SAST) on the workspace; returns scan_id
+  - name: sl_list_applications
+    description: List applications in the active org
+  - name: sl_list_branch_scans
+    description: List scans for an app branch (latest.id)
+  - name: sl_list_findings
+    description: Return counts + top_actionable (critical/high ids) + next_steps for a scan
+  - name: sl_get_findings
+    description: Fetch up to 10 findings by id in one call
+  - name: sl_get_finding_dataflows
+    description: Return the vulnerability data flow for a finding (triage)
+  - name: sl_get_recommended_fixes
+    description: Batch AutoFix recommendations; each fix carries edits[] (file/old_string/new_string)
+  - name: sl_request_finding_fix
+    description: Request an AutoFix/remediation for a finding
+notes: >-
+  Published on npm as harness-code-security-mcp (keywords mcp, qwiet, harness,
+  sast, sca). Ships standalone and inside the Harness SAST and SCA Cursor/Claude
+  plugins. Tool names may be host-prefixed (e.g.
+  mcp__harness-code-security-mcp__sl_whoami).
